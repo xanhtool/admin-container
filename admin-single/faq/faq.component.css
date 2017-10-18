@@ -1,0 +1,28 @@
+.example-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.example-card mat-icon {
+    position: absolute;
+    right: -10px;
+    top: -10px
+}
+
+.example-card mat-form-field {
+  width: 100%;
+}
+
+.contenteditable {
+  background-color: #f1f1f1;
+}
+
+.contenteditable mat-card-title, .contenteditable mat-card-content{
+  background-color: white;
+  border: 1px solid #bdc7d8;
+  padding: 0 5px;
+}
+
+.hint {
+  color: #d18181
+}

@@ -1,0 +1,73 @@
+<div [formGroup]="parentForm">
+    <div formGroupName="postOption">
+        <div class="sidenav-post-option" [@postOptionState]="seoOpened" > 
+            <!-- <h3>Thông tin bắt buộc phải có</h3> -->
+            
+            <!-- <hr> -->
+            <!-- <h3>Thông tin không bắt buộc</h3> -->
+            <!--SEO-->
+            <button class="full-width seo-button" mat-raised-button (click)="toogleSEO()">Tùy chỉnh SEO (tự động) <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
+
+            <!--DATE PICKER-->
+            <mat-form-field class="date-picker space-top">
+                <input matTooltip="Ngày tháng xuất bản của bài viết" matInput [matDatepicker]="picker" placeholder="Ngày xuất bản" formControlName="date">
+                <!-- <button matSuffix [matDatepickerToggle]="picker"></button> -->
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            </mat-form-field>
+            <mat-datepicker #picker></mat-datepicker>
+
+            <!--UPLOAD IMAGE-->
+            <app-upload-button 
+            matTooltip="Ảnh bìa đại diện cho bài viết" 
+            (onDone)="updatePhoto($event)" 
+            [imageLastValue]="parentForm.get(['postOption','image']).value" 
+            [imageName]="parentForm.get(['postOption','image','name']).value || parentForm.get(['uid']).value" 
+            [source]="'posts'" 
+            mode="compressAndResize" 
+            maxSize="0.5" 
+            maxWidth="800" 
+            maxHeight="800"
+            ></app-upload-button>
+
+
+             <!--AUTHOR-->
+            <!-- <mat-select class="input-margin full-width" matTooltip="Xác định tác giả bài viết là ai"  placeholder="Tác giả" formControlName="author" required="true">
+                <mat-option [value]="author">{{author}}</mat-option>
+            </mat-select> -->
+            <!-- <mat-form-field>
+                <input matInput matTooltip="tên tác giả được đặt theo tên hiển thị hoặc theo email"  placeholder="Tác giả" formControlName="author" required="true">
+            </mat-form-field> -->
+
+
+            <!--TAGS-->
+            <app-tag [parentForm]="parentForm"></app-tag>
+            
+
+            <!--URL EDIT-->
+            <mat-form-field>
+                <input matTooltip="Đường dẫn mặc định của bài viết, bạn cũng có thể chỉnh sửa theo ý mình" matInput placeholder="Đường dẫn của bài viết" value="slug" formControlName="slug">
+                <mat-hint>https://quyenanhkt.com/{{parentForm.get(['postOption','category']).value }}/{{parentForm.get(['title']).value | slug }}</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="sidenav-seo-option" [@seoState]="seoOpened" formGroupName="seo">
+            <h4 (click)="toogleSEO()"><span>
+                <i class="fa fa-chevron-circle-left" aria-hidden="true" matTooltip="Cung cấp thông tin cần thiết để SEO bài viết" ></i>
+                </span> Tùy chỉnh SEO (Meta tag)
+            </h4>
+            <mat-form-field>
+                <input matInput matTooltip="Meta tag title!" placeholder="Tiêu đề" value="" formControlName="title" >
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput matTooltip="Meta tag description" placeholder="Mô tả"value="" formControlName="description">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput matTooltip="Meta tag keywords" placeholder="Từ khóa"value="" formControlName="keywords">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput matTooltip="Meta tag author" placeholder="Tác giả"value="" formControlName="author">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+

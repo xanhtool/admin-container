@@ -1,0 +1,14 @@
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-6 vr">
+        <mat-tab-group (selectChange)="modeChange($event)">
+            <mat-tab [label]="sort.label" *ngFor="let sort of sortList">
+                <app-post-list-tab [orderByChild]="sort.queryByChild" [equalTo]="sort.equalTo" ></app-post-list-tab>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <div class="col-lg-6 vr-o">
+        <app-post-list-view></app-post-list-view>
+    </div>
+</div>

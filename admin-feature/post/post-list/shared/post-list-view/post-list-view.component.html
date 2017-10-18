@@ -1,0 +1,30 @@
+
+<div *ngIf="post | async; let post; else loading">
+        <!-- <p>post author {{post.authorUid}}</p>
+        <p>current user {{userUid}}</p>
+        <p> is it true {{userUid == post.authorUid}}</p> -->
+    <div class="row editbar" *ngIf="authService.user | async; let user" [class.display]="user.uid == post.authorUid">
+        <ol class="breadcrumb">
+            <li class="active">
+                <button *ngIf="post.postMark.isPublished; else draftEditing" mat-button [routerLink]="['/admin/post-edit', post.postOption?.slug]"><mat-icon class="fa fa-pencil fa-lg"></mat-icon> Chỉnh sửa</button>
+                <ng-template #draftEditing>
+                    <button mat-button [routerLink]="['/admin/draft-edit', post.postOption?.slug]"><mat-icon class="fa fa-pencil fa-lg"></mat-icon> Chỉnh sửa</button>
+                </ng-template>
+            </li>
+            <li class="active" *ngIf="post.postMark.isPublished">
+                <button mat-button (click)="markFeature(post,!post.postMark?.isFeatured)"><mat-icon [ngClass]="{'fa-window-close-o': post.postMark?.isFeatured,'fa-star': !post.postMark?.isFeatured}" class="fa fa-lg"></mat-icon> Nổi bật</button>
+            </li>
+            <li class="active" *ngIf="post.postMark.isPublished">
+                <button mat-button (click)="markHome(post,!post.postMark?.isHome)"><mat-icon [ngClass]="{'fa-window-close-o': post.postMark?.isHome,'fa-home': !post.postMark?.isHome}" class="fa fa-lg"></mat-icon> Trang chủ</button>
+            </li>
+      </ol>
+  </div>
+  
+  <div class="row">
+    <h1>{{post.title}}</h1>
+    <h4>{{post.subtitle}}</h4>
+     <div [froalaView]="post.content"></div>
+  </div>
+</div>
+
+<ng-template #loading>Không có bài viết!</ng-template>

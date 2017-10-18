@@ -1,0 +1,32 @@
+:host >>> .mat-tab-body-content {
+    overflow: unset!important;
+    font-family: Arial, Helvetica, sans-serif!important;
+}
+
+:host mat-header-cell {
+    /* text-align: center; */
+    font-size: 16px;
+}
+
+:host >>> .cdk-column-mode {
+    flex: 0 0 15%;
+}
+
+:host >>> .cdk-column-email {
+    flex: 0 0 20%;
+}
+
+:host >>> mat-cell.cdk-column-question {
+    text-align: justify!important;
+} 
+
+:host >>> mat-cell.cdk-column-button {
+    flex: 0 0 2%;
+} 
+
+.delete-button {
+    flex: 0 0 5%;
+    text-align: center;
+    align-self: center;
+    color: red;
+}

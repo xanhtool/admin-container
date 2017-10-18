@@ -1,0 +1,79 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Hỏi đáp <small> Quản lý câu hỏi do bạn đọc gửi đến.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+
+
+
+<mat-tab-group>
+    <mat-tab [label]="tab.name" *ngFor="let tab of tabs">
+        <div class="row">
+            <div class="col-lg-12">
+                <ng-template #loading>
+                    Đang lấy bài viết...
+                </ng-template>
+
+                <p *ngIf="noData">
+                    Không có bài viết nào!
+                </p>
+
+                <mat-table [dataSource]="tab.dataSource" #table>
+                    <!-- Author Column -->
+                    <ng-container cdkColumnDef="mode" style="width:2px" >
+                        <mat-header-cell *cdkHeaderCellDef> Loại câu hỏi </mat-header-cell>
+                        <mat-cell  class="column1" *cdkCellDef="let row"> 
+                            <p>{{row.mode}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <!--  Column -->
+                    <ng-container cdkColumnDef="email">
+                        <mat-header-cell *cdkHeaderCellDef>Từ email</mat-header-cell>
+                        <mat-cell  class="removeItem" *cdkCellDef="let row">
+                            <p>{{row.email}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- question Column -->
+                    <ng-container cdkColumnDef="question">
+                        <mat-header-cell *cdkHeaderCellDef> Nội dung </mat-header-cell>
+                        <mat-cell class="truncate question-cell" *cdkCellDef="let row">
+                            <p>{{row.question}}</p> 
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- button Column -->
+                    <ng-container cdkColumnDef="button">
+                        <mat-header-cell *cdkHeaderCellDef> </mat-header-cell>
+                        <mat-cell class="truncate" *cdkCellDef="let row">
+                            <button *ngIf="tab.name == 'Chưa trả lời' else updateButton" class="check-button" mat-button (click)="markDone(row)">
+                                <mat-icon class="fa fa-flag-checkered fa-lg" aria-hidden="true"></mat-icon>
+                            </button>
+                            <ng-template #updateButton>
+                                <button class="delete-button" mat-button (click)="deleteAsk(row)">
+                                    <mat-icon class="fa fa-trash-o fa-lg" aria-hidden="true"></mat-icon>
+                                </button>
+                            </ng-template>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+                    <!-- <mat-header-row *cdkHeaderRowDef="[]"></mat-header-row> -->
+                    <mat-row *cdkRowDef="let row; columns: displayedColumns;" ></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+
+
+

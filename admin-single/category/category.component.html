@@ -1,0 +1,46 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Danh mục <small> Quản lý các danh mục bài viết trên trang.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+<div [formGroup]="categoriesForm" *ngIf="categories | async">
+    <div class="row" formArrayName="categoriesFormArray">
+        <div class="col-lg-12" *ngFor="let category of this.categoriesFormArray.controls; let i=index" [appMakeDraggable]="category.value" appMakeDroppable (dropped)="onDrop($event, category.value)">
+            <mat-icon class="fa fa-times-circle-o fa-2x delete-icon" aria-hidden="true" (click)="deleteCategory(i)"></mat-icon>
+            <mat-card class="example-card" [formGroupName]="i">
+                <mat-form-field>
+                    <input matInput placeholder="Tên" formControlName="name"  (blur)="updateCategory(i,category.value)">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Đường dẫn" formControlName="url" #url (blur)="updateCategory(i,category.value)">
+                    <mat-hint align="start" class="hint"><strong>Định dạng: https://quyenanhkt.com/{{url.value | slug}}</strong> </mat-hint>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="Mô tả" formControlName="description" (blur)="updateCategory(i,category.value)"></textarea>
+                </mat-form-field>
+                <mat-slide-toggle formControlName="onNavbar" (change)="slideChange($event,i,category.value)">Hiển thị trên navbar</mat-slide-toggle>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+                <button mat-button color="primary" (click)="addCategory()">
+                    <mat-icon class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></mat-icon> Thêm danh mục
+                </button>
+        </div>
+        <!-- <div class="col-lg-2">
+                <button mat-raised-button color="accent" (click)="saveCategory()">
+                    <mat-icon class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></mat-icon> Lưu danh mục
+                </button>
+        </div> -->
+    </div>
+</div>
+

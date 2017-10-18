@@ -1,0 +1,50 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Email Marketing với SPARKPOST<small> Gửi những mẫu email tới người đăng ký nhận bản tin.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+
+
+<div class="row">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Tạo chiến dịch mới</mat-card-title>
+            <mat-card-subtitle>Lựa chọn mẫu email phù hợp để gửi tới nhóm người đọc</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="">
+        <mat-card-content [formGroup]="campainForm">
+            <mat-form-field class="example-half-width">
+                <input matInput placeholder="Tên chiến dịch" formControlName="campainID">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select class="email-width" placeholder="Mẫu thư" formControlName="templateID">
+                    <mat-option *ngFor="let template of templates | async" [value]="template.id">
+                    {{ template.name }}
+                    </mat-option> 
+                </mat-select>
+            </mat-form-field>
+             <mat-form-field>
+                <mat-select class="email-width" placeholder="chủ đề muốn gửi" formControlName="topic">
+                    <mat-option *ngFor="let category of categories | async" [value]="category.url">
+                    {{ category.name }}
+                    </mat-option>    
+                </mat-select>
+             </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="sendCampain()">Gửi chiến dịch</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div class="row loader" *ngIf="loading">
+    <app-admin-loader></app-admin-loader>
+</div>

@@ -1,0 +1,6 @@
+ <mat-form-field class="full-width" [formGroup]="tagsForm">
+    <input formControlName="tagsInput" matInput matTooltip="Tags đánh dấu để tăng khả năng tìm kiếm bài viết!" placeholder="Tags" >
+</mat-form-field>
+<mat-chip-list>
+    <mat-chip class="margin-chip" disabled="true" *ngFor="let tag of tags">{{tag}}</mat-chip>
+</mat-chip-list>
