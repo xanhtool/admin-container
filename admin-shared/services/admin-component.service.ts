@@ -36,8 +36,8 @@ export class AdminComponentService {
     return this.db.object('/web-setting/').update(setting)
     .then(() => {
       this.snackBarService.openSnackBar("Đã lưu cấu hình!");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
 
@@ -49,8 +49,8 @@ export class AdminComponentService {
     return this.db.object('/navbar/'+place).update(setting)
     .then(() => {
       this.snackBarService.openSnackBar("Đã lưu cấu hình!");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
   getFooter() {
@@ -61,8 +61,8 @@ export class AdminComponentService {
     return this.db.object('/footer/').update(setting)
     .then(() => {
       this.snackBarService.openSnackBar("Đã lưu cấu hình!");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
   getCategories() {
@@ -87,24 +87,24 @@ export class AdminComponentService {
     return this.db.list('/categories/').update(key,setting)
     .then(() => {
       this.snackBarService.openSnackBar("Đã sửa danh mục");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
   deleteCategory(key) {
     return this.db.list('/categories/').remove(key)
     .then(() => {
       this.snackBarService.openSnackBar("Đã xoá danh mục");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
   swapCategory(setting) {
     return this.db.object('/').update(setting)
     .then(() => {
       this.snackBarService.openSnackBar("Đã đổi vị trí danh mục");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
   getNavbarCategories() {
@@ -198,9 +198,9 @@ export class AdminComponentService {
   sendValuation(value) {
     return this.db.object('/valuation/'+this.userUid).update(value)
     .then(() => {
-      this.snackBarService.openSnackBar("Cảm ơn bạn đã gửi đánh giá!");
-    })
-    .catch((e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+      this.snackBarService.openSnackBar("Cảm ơn bạn đã gửi đánh giá!")
+    },
+    (e) => this.snackBarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
   getValuation(){

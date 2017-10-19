@@ -62,9 +62,11 @@ export class AuthService {
     .then(() => {
       // #3:/users/
       // #2: /users/
-      this.updateDatabaseUser(user.uid,null,null,image).then(() => this.snackbarService.openSnackBar("Đã cập nhật ảnh của bạn!"))
+      this.updateDatabaseUser(user.uid,null,null,image).then(
+        () => this.snackbarService.openSnackBar("Đã cập nhật ảnh của bạn!"),
+        (e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000)
+      )
       })
-      .catch((e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
   }
 
   updateDisplayName(user:firebase.User,displayName,photoURL) {
@@ -76,8 +78,9 @@ export class AuthService {
     .then(() => {
       // #2: /users/
       this.updateDatabaseUser(user.uid,displayName,null,null).then(() => this.snackbarService.openSnackBar("Đã cập nhật tên của bạn!"))
-    })
-    .catch((e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000)
+  )
     
     // #3: /posts/
     
@@ -89,9 +92,8 @@ export class AuthService {
     .then(() => {
       // #2: /users/
       this.updateDatabaseUser(user.uid,null,email,null).then(() => this.snackbarService.openSnackBar("Đã cập nhật email của bạn!"))
-      
-    })
-    .catch((e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
+    },
+    (e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000))
   }
 
 
