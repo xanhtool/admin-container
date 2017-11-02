@@ -84,6 +84,8 @@ export class AdminComponentService {
   }
 
   updateCategory(key,setting) {
+    console.log('key',key,setting)
+    delete setting.$key
     return this.db.list('/categories/').update(key,setting)
     .then(() => {
       this.snackBarService.openSnackBar("Đã sửa danh mục");

@@ -99,7 +99,8 @@ export class PostNewComponent implements OnInit {
     this.adminComponentService.getCategories()
     .do(categories => {
           let postCategory = this.postForm.get(['postOption','category']).value;
-          let CategoryUrls = Object.values(categories).map(category => category.url)
+          // let CategoryUrls = Object.values(categories).map(category => category.url)
+           let CategoryUrls =  Object.keys(categories).map(key => categories[key].url)
           if ( !CategoryUrls.includes(postCategory)) this.postForm.get(['postOption','category']).setValue('');
     })
     .subscribe(categories => this.categories = Object.values(categories));

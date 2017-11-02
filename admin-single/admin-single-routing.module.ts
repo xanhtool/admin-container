@@ -19,7 +19,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { 
-    path: 'admin', 
+    path: '', 
     component: AdminTemplateComponent,
     canActivateChild: [AuthGuard],
     children: [

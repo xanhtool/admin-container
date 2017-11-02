@@ -8,12 +8,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import 'hammerjs'
 import { AdminContainerRoutingModule } from './admin-container-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     AdminCoreModule,
     AdminSharedModule,
     AdminSingleModule,
